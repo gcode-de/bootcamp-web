@@ -1,0 +1,13 @@
+body {
+  background-color: #2d383a;
+  color: white;
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+}
+.filter {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+}
