@@ -37,3 +37,6 @@ next-env.d.ts
 node_modules
 .codesandsbox
 packe.json
+
+/cgn-web-24-1
+cgn-web-24-1
