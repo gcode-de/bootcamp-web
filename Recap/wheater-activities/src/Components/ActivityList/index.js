@@ -4,7 +4,7 @@ export default function ActivityList({ activities, handleDelete }) {
   return (
     <div className="ActivityList">
       <p>
-        <b>We suggest the following activities:</b>
+        <b>Suggested activities:</b>
       </p>
       <ul>
         {activities.map((activity) => (
