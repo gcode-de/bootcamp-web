@@ -4,15 +4,18 @@ import ActivityList from "./Components/ActivityList";
 import RefreshCountdown from "./Components/RefreshCountdown";
 import WeatherDisplay from "./Components/WeatherDisplay";
 import { useState, useEffect } from "react";
+import useLocalStorageState from "use-local-storage-state";
 const URL = "https://example-apis.vercel.app/api/weather";
 
 function App() {
-  const [activities, setActivities] = useState([
-    { name: "jump", isForGoodWeather: true },
-    { name: "sleep", isForGoodWeather: false },
-    { name: "annoy Niklas", isForGoodWeather: true },
-    { name: "learn coding", isForGoodWeather: false },
-  ]);
+  const [activities, setActivities] = useLocalStorageState("activities", {
+    defaultValue: [
+      { name: "jump", isForGoodWeather: true },
+      { name: "sleep", isForGoodWeather: false },
+      { name: "annoy Niklas", isForGoodWeather: true },
+      { name: "learn coding", isForGoodWeather: false },
+    ],
+  });
   const [isGoodWeather, setIsGoodWwather] = useState(true);
   const [timeToRefresh, setTimeToRefresh] = useState(5);
 
@@ -29,21 +32,24 @@ function App() {
       try {
         const response = await fetch(URL);
         const data = await response.json();
-        setIsGoodWwather(data.GOOOOOOOD);
-        console.log(data);
+        setIsGoodWwather(data.isGoodWeather);
+        setTimeToRefresh(5);
+        console.log("Weather is good:", data.isGoodWeather);
       } catch (error) {
         console.error(error);
       }
     }
 
-    // startFetching();
+    startFetching();
 
-    // const refreshInterval = setInterval(setTimeToRefresh(timeToRefresh - 1), 100);
-    // const fetchInterval = setInterval(setTimeToRefresh(startFetching), 5000);
+    const refreshInterval = setInterval(() => {
+      setTimeToRefresh((prevTime) => prevTime - 1);
+    }, 1000);
+    const fetchInterval = setInterval(startFetching, 5000);
 
     return () => {
-      // clearInterval(refreshInterval);
-      // clearInterval(fetchInterval);
+      clearInterval(refreshInterval);
+      clearInterval(fetchInterval);
     };
   }, []);
 
