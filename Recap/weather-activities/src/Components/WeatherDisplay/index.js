@@ -3,10 +3,8 @@ import "./WeatherDisplay.css";
 export default function WeatherDisplay({ isGoodWeather, temperature, condition }) {
   return (
     <>
-      <h2>{isGoodWeather ? "Good Weather 🌤️" : "Bad Weather 🌧️"}</h2>
-      <p>
-        {condition} {temperature}°C
-      </p>
+      <h2>{isGoodWeather ? `Good Weather ${condition}` : `Bad Weather ${condition}`}</h2>
+      <p>{temperature}°C</p>
     </>
   );
 }

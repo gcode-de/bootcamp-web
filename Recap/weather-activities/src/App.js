@@ -17,8 +17,8 @@ function App() {
     ],
   });
   const [isGoodWeather, setIsGoodWwather] = useState(true);
-  const [temperature, setTemperature] = useState();
-  const [condition, setCondition] = useState();
+  const [temperature, setTemperature] = useState("?");
+  const [condition, setCondition] = useState("🤷‍♂️");
   const [timeToRefresh, setTimeToRefresh] = useState(5);
 
   function handleDelete(name) {
