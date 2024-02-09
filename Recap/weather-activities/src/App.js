@@ -61,6 +61,7 @@ function App() {
     <div className="App">
       <WeatherDisplay isGoodWeather={isGoodWeather} temperature={temperature} condition={condition} />
       <ActivityList activities={activities.filter((activity) => activity.isForGoodWeather === isGoodWeather)} handleDelete={handleDelete} />
+      <hr></hr>
       <ActivityForm addActivity={addActivity} />
       <RefreshCountdown timeToRefresh={timeToRefresh} />
     </div>

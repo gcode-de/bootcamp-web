@@ -10,3 +10,7 @@ body {
   margin-top: 40px;
   border-radius: 3px;
 }
+
+hr {
+  margin: 50px 50px 30px 50px;
+}
