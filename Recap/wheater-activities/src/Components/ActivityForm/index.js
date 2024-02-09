@@ -3,12 +3,10 @@ import "./ActivityForm.css";
 export default function ActivityForm({ addActivity }) {
   function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-    const isForGoodWeather = data.isForGoodWeather === "on" ? true : false;
-    const newActivity = { name: data.name, isForGoodWeather: isForGoodWeather };
+    const name = event.target.elements.name.value;
+    const isForGoodWeather = event.target.elements.isForGoodWeather.checked;
+    const newActivity = { name: name, isForGoodWeather: isForGoodWeather };
     addActivity(newActivity);
-
     event.target.reset();
   }
   return (
