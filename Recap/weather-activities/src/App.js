@@ -17,6 +17,8 @@ function App() {
     ],
   });
   const [isGoodWeather, setIsGoodWwather] = useState(true);
+  const [temperature, setTemperature] = useState();
+  const [condition, setCondition] = useState();
   const [timeToRefresh, setTimeToRefresh] = useState(5);
 
   function handleDelete(name) {
@@ -33,6 +35,8 @@ function App() {
         const response = await fetch(URL);
         const data = await response.json();
         setIsGoodWwather(data.isGoodWeather);
+        setTemperature(data.temperature);
+        setCondition(data.condition);
         setTimeToRefresh(5);
         console.log("Weather is good:", data.isGoodWeather);
       } catch (error) {
@@ -55,10 +59,10 @@ function App() {
 
   return (
     <div className="App">
-      <WeatherDisplay isGoodWeather={isGoodWeather} />
-      <RefreshCountdown timeToRefresh={timeToRefresh} />
+      <WeatherDisplay isGoodWeather={isGoodWeather} temperature={temperature} condition={condition} />
       <ActivityList activities={activities.filter((activity) => activity.isForGoodWeather === isGoodWeather)} handleDelete={handleDelete} />
       <ActivityForm addActivity={addActivity} />
+      <RefreshCountdown timeToRefresh={timeToRefresh} />
     </div>
   );
 }
