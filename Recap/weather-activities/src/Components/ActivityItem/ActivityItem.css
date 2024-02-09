@@ -1,4 +1,20 @@
 .activityItem {
   display: flex;
   justify-content: space-between;
+  background-color: rgb(238, 238, 238);
+  border: 1px solid rgb(160, 160, 160);
+  border-radius: 3px;
+  padding: 3px 6px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.activityItem button {
+  border: none;
+  transition: transform 200ms ease-out;
+}
+
+.activityItem button:hover {
+  border: none;
+  transform: scale(1.15);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
 }
