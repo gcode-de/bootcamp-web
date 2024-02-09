@@ -2,7 +2,7 @@
   margin-top: 40px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
   align-items: center;
   margin-bottom: 40px;
 }
@@ -10,7 +10,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   width: min-content;
   /* align-items: flex-start; */
 }
@@ -19,5 +19,22 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: baseline;
   gap: 10px;
+}
+
+.form button {
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  background-color: rgb(255, 255, 255);
+}
+
+.form input {
+  border: 1px solid rgb(174, 172, 172);
+  border-radius: 3px;
+  padding: 5px 10px;
+  /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25); */
+  background-color: rgb(255, 255, 255);
 }

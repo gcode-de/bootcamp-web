@@ -10,9 +10,9 @@ const URL = "https://example-apis.vercel.app/api/weather";
 function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [
-      { name: "jump", isForGoodWeather: true },
-      { name: "sleep", isForGoodWeather: false },
-      { name: "annoy Niklas", isForGoodWeather: true },
+      { name: "ride your bike", isForGoodWeather: true },
+      { name: "relax", isForGoodWeather: false },
+      { name: "take a walk", isForGoodWeather: true },
       { name: "learn coding", isForGoodWeather: false },
     ],
   });
