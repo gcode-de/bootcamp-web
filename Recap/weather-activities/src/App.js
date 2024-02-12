@@ -5,7 +5,10 @@ import RefreshCountdown from "./Components/RefreshCountdown";
 import WeatherDisplay from "./Components/WeatherDisplay";
 import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
-const URL = "https://example-apis.vercel.app/api/weather";
+// const URL = "https://example-apis.vercel.app/api/weather";
+// const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "http://api.weatherapi.com/v1/current.json?key=8b2d5ce51d074a25b81131135241202&q=Baden-Baden&aqi=no&lang=de";
+console.log(`Die API-URL ist: ${API_URL}`);
 
 function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
@@ -18,7 +21,8 @@ function App() {
   });
   const [isGoodWeather, setIsGoodWwather] = useState(true);
   const [temperature, setTemperature] = useState("?");
-  const [condition, setCondition] = useState("🤷‍♂️");
+  const [conditionIcon, setConditionIcon] = useState("🤷‍♂️");
+  const [conditionText, setConditionText] = useState("unknwon");
   const [timeToRefresh, setTimeToRefresh] = useState(5);
 
   function handleDelete(name) {
@@ -32,13 +36,15 @@ function App() {
   useEffect(() => {
     async function startFetching() {
       try {
-        const response = await fetch(URL);
+        console.log(API_URL);
+        const response = await fetch(API_URL);
         const data = await response.json();
-        setIsGoodWwather(data.isGoodWeather);
-        setTemperature(data.temperature);
-        setCondition(data.condition);
+        console.log(data);
+        setTemperature(data.current.temp_c);
+        setIsGoodWwather(data.current.condition.code <= 1009 || data.current.condition.code === 1063);
+        setConditionIcon(data.current.condition.icon);
+        setConditionText(data.current.condition.text);
         setTimeToRefresh(5);
-        console.log("Weather is good:", data.isGoodWeather);
       } catch (error) {
         console.error(error);
       }
@@ -59,7 +65,7 @@ function App() {
 
   return (
     <div className="App">
-      <WeatherDisplay isGoodWeather={isGoodWeather} temperature={temperature} condition={condition} />
+      <WeatherDisplay isGoodWeather={isGoodWeather} temperature={temperature} conditionIcon={conditionIcon} conditionText={conditionText} />
       <ActivityList activities={activities.filter((activity) => activity.isForGoodWeather === isGoodWeather)} handleDelete={handleDelete} />
       <hr></hr>
       <ActivityForm addActivity={addActivity} />

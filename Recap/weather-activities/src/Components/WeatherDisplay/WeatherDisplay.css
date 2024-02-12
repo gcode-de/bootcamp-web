@@ -5,3 +5,7 @@ h2 {
 p {
   margin: 0;
 }
+
+.weather-icon {
+  transform: translateY(20px);
+}

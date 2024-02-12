@@ -1,10 +1,15 @@
 import "./WeatherDisplay.css";
 
-export default function WeatherDisplay({ isGoodWeather, temperature, condition }) {
+export default function WeatherDisplay({ isGoodWeather, temperature, conditionIcon, conditionText }) {
   return (
     <>
-      <h2>{isGoodWeather ? `Weather: 10/10 ${condition}` : `Weather: mid ${condition}`}</h2>
-      <p>{temperature}°C</p>
+      <h2>
+        {isGoodWeather ? `Weather: 10/10` : `Weather: mid `}
+        <img src={conditionIcon} alt="Weather Icon" className="weather-icon" />
+      </h2>
+      <p>
+        {temperature}°C - {conditionText}
+      </p>
     </>
   );
 }

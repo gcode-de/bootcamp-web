@@ -5,7 +5,7 @@ export default function ActivityForm({ addActivity }) {
     event.preventDefault();
     const name = event.target.elements.name.value;
     const isForGoodWeather = event.target.elements.isForGoodWeather.checked;
-    const newActivity = { name: name, isForGoodWeather: isForGoodWeather };
+    const newActivity = { name, isForGoodWeather };
     addActivity(newActivity);
     event.target.reset();
   }
