@@ -7,8 +7,7 @@ import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 // const URL = "https://example-apis.vercel.app/api/weather";
 // const API_URL = process.env.REACT_APP_API_URL;
-const API_URL = "http://api.weatherapi.com/v1/current.json?key=8b2d5ce51d074a25b81131135241202&q=Baden-Baden&aqi=no&lang=de";
-console.log(`Die API-URL ist: ${API_URL}`);
+const API_URL = "https://api.weatherapi.com/v1/current.json?key=8b2d5ce51d074a25b81131135241202&q=Baden-Baden&aqi=no&lang=de";
 
 function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
@@ -36,10 +35,8 @@ function App() {
   useEffect(() => {
     async function startFetching() {
       try {
-        console.log(API_URL);
         const response = await fetch(API_URL);
         const data = await response.json();
-        console.log(data);
         setTemperature(data.current.temp_c);
         setIsGoodWwather(data.current.condition.code <= 1009 || data.current.condition.code === 1063);
         setConditionIcon(data.current.condition.icon);
