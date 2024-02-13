@@ -62,7 +62,7 @@ function App() {
       clearInterval(refreshInterval);
       clearInterval(fetchInterval);
     };
-  }, []);
+  }, [LOCAL_API_URL]);
 
   return (
     <div className="App">
