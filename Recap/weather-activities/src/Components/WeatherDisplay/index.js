@@ -22,6 +22,7 @@ export default function WeatherDisplay({ isGoodWeather, temperature, conditionIc
       <form
         style={{ display: cityFormIsVisible ? "block" : "none" }}
         onSubmit={(event) => {
+          event.preventDefault();
           event.target.city.value && setCity(event.target.city.value);
           setCityFormIsVisible(false);
         }}
