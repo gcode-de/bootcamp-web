@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { volumes } from "../../public/lib/data";
+import { volumes } from "@/lib/data";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -16,8 +16,8 @@ export default function Volume() {
       <h1>{volume.title}</h1>
       <p>{volume.description}</p>
       <ul>
-        {volume.books.map((book, index) => (
-          <li key={index}>
+        {volume.books.map((book) => (
+          <li key={book.title}>
             {book.ordinal} - {book.title}
           </li>
         ))}
