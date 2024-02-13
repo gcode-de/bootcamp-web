@@ -3,9 +3,6 @@ import "./WeatherDisplay.css";
 
 export default function WeatherDisplay({ isGoodWeather, temperature, conditionIcon, conditionText, city, setCity }) {
   const [cityFormIsVisible, setCityFormIsVisible] = useState();
-  function onChangeCity() {
-    setCityFormIsVisible(true);
-  }
 
   return (
     <>
@@ -16,18 +13,18 @@ export default function WeatherDisplay({ isGoodWeather, temperature, conditionIc
       <p>
         {temperature}°C - {conditionText}
       </p>
-      <p className="cityDisplay" onClick={onChangeCity} title="Click to change city">
-        ({city})
+      <p className="cityDisplay" onClick={() => setCityFormIsVisible((oldState) => !oldState)} title="Click to change city">
+        {city}
       </p>
       <form
         style={{ display: cityFormIsVisible ? "block" : "none" }}
         onSubmit={(event) => {
           event.preventDefault();
-          event.target.city.value && setCity(event.target.city.value);
+          event.target.city.value && setCity(event.target.city.value.trim());
           setCityFormIsVisible(false);
         }}
       >
-        <input name="city"></input>
+        <input name="city" placeholder="type city name"></input>
         <button>set</button>
       </form>
     </>
