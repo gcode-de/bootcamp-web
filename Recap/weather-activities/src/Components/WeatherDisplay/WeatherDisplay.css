@@ -9,3 +9,7 @@ p {
 .weather-icon {
   transform: translateY(20px);
 }
+
+.cityDisplay {
+  cursor: pointer;
+}

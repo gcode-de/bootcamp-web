@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 // const URL = "https://example-apis.vercel.app/api/weather";
 // const API_URL = process.env.REACT_APP_API_URL;
-const API_URL = "https://api.weatherapi.com/v1/current.json?key=8b2d5ce51d074a25b81131135241202&q=Baden-Baden&aqi=no&lang=de";
+const API_URL = "https://api.weatherapi.com/v1/current.json?key=8b2d5ce51d074a25b81131135241202&aqi=no&lang=de&q=";
 
 function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
@@ -17,6 +17,9 @@ function App() {
       { name: "take a walk", isForGoodWeather: true },
       { name: "learn coding", isForGoodWeather: false },
     ],
+  });
+  const [city, setCity] = useLocalStorageState("city", {
+    defaultValue: "Baden-Baden",
   });
   const [isGoodWeather, setIsGoodWwather] = useState(true);
   const [temperature, setTemperature] = useState("?");
@@ -32,10 +35,11 @@ function App() {
     setActivities([...activities, activity]);
   }
 
+  const LOCAL_API_URL = API_URL + city;
   useEffect(() => {
     async function startFetching() {
       try {
-        const response = await fetch(API_URL);
+        const response = await fetch(LOCAL_API_URL);
         const data = await response.json();
         setTemperature(data.current.temp_c);
         setIsGoodWwather(data.current.condition.code <= 1009 || data.current.condition.code === 1063);
@@ -62,7 +66,14 @@ function App() {
 
   return (
     <div className="App">
-      <WeatherDisplay isGoodWeather={isGoodWeather} temperature={temperature} conditionIcon={conditionIcon} conditionText={conditionText} />
+      <WeatherDisplay
+        isGoodWeather={isGoodWeather}
+        temperature={temperature}
+        conditionIcon={conditionIcon}
+        conditionText={conditionText}
+        city={city}
+        setCity={setCity}
+      />
       <ActivityList activities={activities.filter((activity) => activity.isForGoodWeather === isGoodWeather)} handleDelete={handleDelete} />
       <hr></hr>
       <ActivityForm addActivity={addActivity} />
