@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   :root {
-    --font-family: ${lora.style.fontFamily}, serif;;
+  --font-family: ${lora.style.fontFamily}, serif;;
 
   /* Color styles */
   --color-earth: #282828;
@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
   --color-smoke: #d4d1cd;
 
   /* Font styles */
-  --font-family: serif;
+
   /*
     use like:
     font: var(--font-body);
@@ -52,8 +52,8 @@ export const GlobalStyle = createGlobalStyle`
   
 
   body {
-    font-family: var(--font-family);
-    margin: 0;
+  font-family: var(--font-family);
+  margin: 0;
   padding: 60px 40px;
   background-color: lightgray;
   color: black;
