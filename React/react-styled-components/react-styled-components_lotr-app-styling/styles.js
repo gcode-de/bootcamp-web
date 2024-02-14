@@ -62,9 +62,9 @@ export const GlobalStyle = createGlobalStyle`
   }
   @media (prefers-color-scheme: dark) {
     background-color: var(--color-earth);
-    color: lightgray;
+    color: var(--color-smoke);
     a {
-      color: white;
+      color: var(--color-smoke);
       text-decoration: none;
     }
   }

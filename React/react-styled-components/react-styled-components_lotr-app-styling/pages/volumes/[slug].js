@@ -2,7 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { volumes } from "../../lib/data";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import ChevronLeft from "@/public/images/chevron-left.svg";
+import ArrowLeft from "@/public/images/arrow-left.svg";
+import ArrowRight from "@/public/images/arrow-right.svg";
 
 export default function VolumeDetail() {
   const router = useRouter();
@@ -23,7 +26,7 @@ export default function VolumeDetail() {
   return (
     <Container>
       <Link href="/volumes">
-        <Image height={30} width={30} src="/images/chevron-screenLeft.svg" />
+        <ChevronLeft />
         All Volumes
       </Link>
       <Title>{title}</Title>
@@ -41,14 +44,22 @@ export default function VolumeDetail() {
         <Image src={cover} alt={`Cover image of ${title}`} width={140} height={230} />
       </Books>
       {previousVolume ? (
-        <div>
-          <Link href={`/volumes/${previousVolume.slug}`}>← Previous Volume: {previousVolume.title}</Link>
-        </div>
+        <LinkWrapper>
+          <ArrowLeft />
+          <Link href={`/volumes/${previousVolume.slug}`}>
+            <p>Previous Volume</p>
+            <span>{previousVolume.title}</span>
+          </Link>
+        </LinkWrapper>
       ) : null}
       {nextVolume ? (
-        <div>
-          <Link href={`/volumes/${nextVolume.slug}`}>Next Volume: {nextVolume.title} →</Link>
-        </div>
+        <LinkWrapper $goesRight>
+          <Link href={`/volumes/${nextVolume.slug}`}>
+            <p>Next Volume</p>
+            <span>{nextVolume.title}</span>
+          </Link>
+          <ArrowRight />
+        </LinkWrapper>
       ) : null}
     </Container>
   );
@@ -61,7 +72,7 @@ const Title = styled.h1`
 `;
 
 const Description = styled.p`
-  font-size: 1rem;
+  font: var(--font-body);
 `;
 
 const Books = styled.div`
@@ -85,5 +96,21 @@ const Books = styled.div`
   }
   img {
     box-shadow: var(--box-shadow-book);
+  }
+`;
+
+const LinkWrapper = styled.div`
+  ${(props) =>
+    props.$goesRight &&
+    css`
+      text-align: end;
+      float: right;
+    `}
+  p {
+    font: var(--font-caption--italic);
+    margin-bottom: 0px;
+  }
+  span {
+    font: var(--font-caption);
   }
 `;
