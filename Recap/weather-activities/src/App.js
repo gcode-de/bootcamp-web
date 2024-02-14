@@ -6,12 +6,7 @@ import WeatherDisplay from "./Components/WeatherDisplay";
 import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
-const REACT_APP_API_URL2 = process.env.REACT_APP_API_URL;
-console.log(REACT_APP_API_URL2);
-
-// const API_URL = process.env.REACT_APP_API_URL;
 const API_URL = `https://api.weatherapi.com/v1/current.json?key=8b2d5ce51d074a25b81131135241202&aqi=no&lang=de&q=`;
-// const API_URL = `https://api.weatherapi.com/v1/current.json?key=${REACT_APP_API_KEY}&aqi=no&lang=de&q=`;
 
 function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
@@ -68,7 +63,7 @@ function App() {
       clearInterval(refreshInterval);
       clearInterval(fetchInterval);
     };
-  }, [LOCAL_API_URL]);
+  }, [LOCAL_API_URL, setCity]);
 
   return (
     <div className="App">
