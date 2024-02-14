@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { volumes } from "../../lib/data";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export default function VolumeDetail() {
   const router = useRouter();
@@ -22,17 +22,24 @@ export default function VolumeDetail() {
 
   return (
     <Container>
-      <Link href="/volumes">← All Volumes</Link>
+      <Link href="/volumes">
+        <Image height={30} width={30} src="/images/chevron-screenLeft.svg" />
+        All Volumes
+      </Link>
       <Title>{title}</Title>
       <Description>{description}</Description>
-      <ul>
-        {books.map(({ ordinal, title }) => (
-          <li key={title}>
-            {ordinal}: <strong>{title}</strong>
-          </li>
-        ))}
-      </ul>
-      <Image src={cover} alt={`Cover image of ${title}`} width={140} height={230} />
+      <Books $color={volume.color}>
+        <ul>
+          {books.map(({ ordinal, title }) => (
+            <li key={title}>
+              <i>{ordinal}</i>
+              <br></br>
+              <strong>{title}</strong>
+            </li>
+          ))}
+        </ul>
+        <Image src={cover} alt={`Cover image of ${title}`} width={140} height={230} />
+      </Books>
       {previousVolume ? (
         <div>
           <Link href={`/volumes/${previousVolume.slug}`}>← Previous Volume: {previousVolume.title}</Link>
@@ -47,21 +54,36 @@ export default function VolumeDetail() {
   );
 }
 
-const Container = styled.div`
-  margin: 0;
-  padding: 60px 40px;
-  background-color: lightgray;
-  color: black;
-  @media (prefers-color-scheme: dark) {
-    background-color: black;
-    color: lightgray;
-  }
-`;
+const Container = styled.div``;
 
 const Title = styled.h1`
-  font-size: 3rem;
+  font: var(--font-headline-1);
 `;
 
 const Description = styled.p`
   font-size: 1rem;
+`;
+
+const Books = styled.div`
+  background-color: ${(props) => props.$color};
+  margin: 40px -40px;
+  padding: 40px 40px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    font-size: 0.8rem;
+    strong {
+      font-size: 1.2rem;
+    }
+    margin-bottom: 20px;
+  }
+  img {
+    box-shadow: var(--box-shadow-book);
+  }
 `;
