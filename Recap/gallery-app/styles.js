@@ -10,5 +10,9 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
+    width: 400px;
+    padding: 25px;
+    margin: 20px auto 0 auto;
+    text-align: center;
   }
 `;
