@@ -12,6 +12,7 @@ export default createGlobalStyle`
     font-family: system-ui;
     width: 400px;
     padding: 25px;
+    padding-bottom: 80px;
     margin: 20px auto 0 auto;
     text-align: center;
   }

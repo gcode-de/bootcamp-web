@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import GlobalStyle from "../styles";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import useLocalStorageState from "use-local-storage-state";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -134,32 +135,37 @@ export default function App({ Component, pageProps }) {
     "https://example-apis.vercel.app/api/art",
     fetcher
   );
+
   const [pieces, setPieces] = useState(initialPieces);
 
   useEffect(() => {
     if (data && !error && !isLoading) {
       setPieces(data);
     }
-  }, [data, error]);
+  }, [data, error, isLoading]);
 
-  const [favorites, setFavorites] = useState([]);
-  const [comments, setComments] = useState([
-    {
-      slug: "orange-red-and-green",
-      comment: "nice",
-      date: "17.02.2024",
-    },
-    {
-      slug: "orange-red-and-green",
-      comment: "nicer",
-      date: "17.02.2024",
-    },
-    {
-      slug: "orange-red-and-green",
-      comment: "am nicesten",
-      date: "17.02.2024",
-    },
-  ]);
+  const [favorites, setFavorites] = useLocalStorageState("favorites", {
+    defaultValue: [],
+  });
+  const [comments, setComments] = useLocalStorageState("comments", {
+    defaultValue: [
+      {
+        slug: "orange-red-and-green",
+        comment: "nice",
+        date: "17.02.2024",
+      },
+      {
+        slug: "orange-red-and-green",
+        comment: "nicer",
+        date: "17.02.2024",
+      },
+      {
+        slug: "orange-red-and-green",
+        comment: "am nicesten",
+        date: "17.02.2024",
+      },
+    ],
+  });
 
   function toggleIsFavorite(slug) {
     setFavorites((currentFavorites) =>
