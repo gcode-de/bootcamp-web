@@ -9,6 +9,7 @@ export default function handler(request, response) {
     twitter_name: chance.twitter(),
     geohash: chance.geohash(),
     avatar: chance.avatar({ protocol: "https" }),
+    gender: chance.gender(),
   };
 
   response.status(200).json(character);

@@ -5,7 +5,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    domains: ["www.gravatar.com", "randomuser.me"],
+    domains: ["randomuser.me"],
   },
   webpack(config) {
     config.module.rules.push({
