@@ -13,7 +13,6 @@ export default function ProductsPage() {
   } = useSWR(person?.gender ? `https://randomuser.me/api/?gender=${person.gender}` : null, fetcher);
   if (personError || imageError) return <div>failed to load</div>;
   if (personIsLoading || imageIsLoading) return <div>loading...</div>;
-  console.log(image);
   return (
     <div>
       <Person>
