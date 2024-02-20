@@ -29,5 +29,5 @@ export default function ProductsPage() {
 }
 
 const Person = styled.div`
-  margin-bottom: 20px;
+  margin: 20px;
 `;
