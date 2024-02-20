@@ -9,6 +9,6 @@ export const server = createServer((request, response) => {
     response.end("Anemonefish");
   } else {
     response.statusCode = 404;
-    response.end("Not Found");
+    response.end("Not found");
   }
 });
