@@ -10,7 +10,7 @@ export default function ProductsPage() {
     data: image,
     error: imageError,
     isLoading: imageIsLoading,
-  } = useSWR(person?.gender ? `https://randomuser.me/api/?gender=${person.gender}` : null, fetcher);
+  } = useSWR(person?.gender ? `https://randomuser.me/api/?gender=${person.gender.toLowerCase()}` : null, fetcher);
   if (personError || imageError) return <div>failed to load</div>;
   if (personIsLoading || imageIsLoading) return <div>loading...</div>;
   return (
