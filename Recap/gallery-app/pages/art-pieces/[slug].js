@@ -16,25 +16,9 @@ export default function PieceDetails({
   const router = useRouter();
   const { slug } = router.query;
 
-  const [piece, setPiece] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [pieceComments, setPieceComments] = useState([]);
+  const piece = pieces.find((piece) => piece.slug === slug);
 
-  //warten auf router query
-  useEffect(() => {
-    if (router.isReady) {
-      const foundPiece = pieces.find((p) => p.slug === slug);
-      if (foundPiece) {
-        setPiece(foundPiece);
-        setIsFavorite(favorites.includes(foundPiece.slug));
-
-        const foundComments = comments.filter(
-          (comment) => comment.slug === slug
-        );
-        setPieceComments(foundComments);
-      }
-    }
-  }, [router.isReady, slug, pieces, favorites, comments]);
+  const pieceComments = comments.filter((comment) => comment.slug === slug);
 
   if (!piece) return <div>Loading...</div>;
 
@@ -49,7 +33,7 @@ export default function PieceDetails({
         name={piece.name}
         year={piece.year}
         genre={piece.genre}
-        $isFavorite={isFavorite}
+        $isFavorite={piece.isFavorite}
         toggleIsFavorite={toggleIsFavorite}
         colors={piece.colors}
       ></Card>
