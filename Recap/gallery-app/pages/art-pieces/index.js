@@ -9,8 +9,6 @@ export default function ArtPieces({ pieces, favorites, toggleIsFavorite }) {
         <Card
           key={piece.slug}
           imageSource={piece.imageSource}
-          imageWidth={piece.dimensions.width}
-          imageHeight={piece.dimensions.height}
           slug={piece.slug}
           artist={piece.artist}
           name={piece.name}

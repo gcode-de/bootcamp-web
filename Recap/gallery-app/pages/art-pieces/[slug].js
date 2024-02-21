@@ -20,6 +20,7 @@ export default function PieceDetails({
   const [isFavorite, setIsFavorite] = useState(false);
   const [pieceComments, setPieceComments] = useState([]);
 
+  //warten auf router query
   useEffect(() => {
     if (router.isReady) {
       const foundPiece = pieces.find((p) => p.slug === slug);
@@ -43,8 +44,6 @@ export default function PieceDetails({
       <Headline>{piece.name}</Headline>
       <Card
         imageSource={piece.imageSource}
-        imageWidth={piece.dimensions.width}
-        imageHeight={piece.dimensions.height}
         slug={piece.slug}
         artist={piece.artist}
         name={piece.name}

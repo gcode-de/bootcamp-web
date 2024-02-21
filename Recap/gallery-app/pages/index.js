@@ -10,8 +10,6 @@ export default function HomePage({ pieces, favorites, toggleIsFavorite }) {
       <Headline>ART GALLERY</Headline>
       <Card
         imageSource={piece.imageSource}
-        imageWidth={piece.dimensions.width}
-        imageHeight={piece.dimensions.height}
         slug={piece.slug}
         artist={piece.artist}
         name={piece.name}

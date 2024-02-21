@@ -131,18 +131,19 @@ export default function App({ Component, pageProps }) {
     },
   ];
 
-  const { data, error, isLoading } = useSWR(
-    "https://example-apis.vercel.app/api/art",
-    fetcher
-  );
+  const {
+    data: pieces,
+    error,
+    isLoading,
+  } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
 
-  const [pieces, setPieces] = useState(initialPieces);
+  // const [pieces, setPieces] = useState(initialPieces);
 
-  useEffect(() => {
-    if (data && !error && !isLoading) {
-      setPieces(data);
-    }
-  }, [data, error, isLoading]);
+  // useEffect(() => {
+  //   if (data && !error && !isLoading) {
+  //     setPieces(data);
+  //   }
+  // }, [data, error, isLoading]);
 
   const [favorites, setFavorites] = useLocalStorageState("favorites", {
     defaultValue: [],
@@ -189,6 +190,14 @@ export default function App({ Component, pageProps }) {
         { slug, comment: commentText, date: formattedDate },
       ];
     });
+  }
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!pieces) {
+    return;
   }
 
   return (

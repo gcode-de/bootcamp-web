@@ -10,8 +10,6 @@ export default function Card({
   year,
   genre,
   imageSource,
-  imageWidth,
-  imageHeight,
   colors,
   $isFavorite,
   toggleIsFavorite,
@@ -21,8 +19,10 @@ export default function Card({
       <Image
         alt={name}
         src={imageSource}
-        height={200}
-        width={(200 / imageHeight) * imageWidth}
+        width="0"
+        height="0"
+        sizes="200px"
+        style={{ width: "200px", height: "auto" }}
       ></Image>
       <StyledHeart
         onClick={() => {
