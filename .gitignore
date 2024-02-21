@@ -40,3 +40,6 @@ packe.json
 
 /cgn-web-24-1
 cgn-web-24-1
+
+# local env files
+.env*.local
