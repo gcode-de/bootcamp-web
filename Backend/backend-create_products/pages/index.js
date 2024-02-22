@@ -1,3 +1,4 @@
+import Login from "@/components/Login";
 import ProductList from "../components/ProductList";
 import styled from "styled-components";
 import ProductForm from "../components/ProductForm";
@@ -15,7 +16,6 @@ export default function HomePage() {
 
     const formData = new FormData(event.target);
     const productData = Object.fromEntries(formData);
-    console.log(productData);
     const response = await fetch("/api/products", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -28,6 +28,7 @@ export default function HomePage() {
   }
   return (
     <>
+      <Login></Login>
       <Heading>
         <span role="img" aria-label="A fish">
           🐠
