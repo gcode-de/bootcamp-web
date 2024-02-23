@@ -1,21 +1,21 @@
 import { StyledForm, StyledHeading, StyledLabel } from "./ProductForm.styled";
 import { StyledButton } from "../Button/Button.styled";
 
-export default function ProductForm({ onSubmit }) {
+export default function ProductForm({ onSubmit, isEditMode, defaultData }) {
   return (
     <StyledForm onSubmit={onSubmit}>
-      <StyledHeading>Add a new Fish</StyledHeading>
+      <StyledHeading>{isEditMode ? "Edit Fish" : "Add a new Fish"}</StyledHeading>
       <StyledLabel htmlFor="name">
         Name:
-        <input type="text" id="name" name="name" />
+        <input type="text" id="name" name="name" defaultValue={defaultData?.name} />
       </StyledLabel>
       <StyledLabel htmlFor="description">
         Description:
-        <input type="text" id="description" name="description" />
+        <input type="text" id="description" name="description" defaultValue={defaultData?.description} />
       </StyledLabel>
       <StyledLabel htmlFor="price">
         Price:
-        <input type="number" id="price" name="price" min="0" />
+        <input type="number" id="price" name="price" min="0" defaultValue={defaultData?.price} />
       </StyledLabel>
       <StyledLabel htmlFor="currency">
         Currency:
@@ -25,7 +25,7 @@ export default function ProductForm({ onSubmit }) {
           <option value="GBP">GBP</option>
         </select>
       </StyledLabel>
-      <StyledButton type="submit">Submit</StyledButton>
+      <StyledButton type="submit">{isEditMode ? "Update" : "Add"}</StyledButton>
     </StyledForm>
   );
 }

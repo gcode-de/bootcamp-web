@@ -48,7 +48,7 @@ export default function Product() {
 
   return (
     <ProductCard>
-      {isEditMode && <ProductForm onSubmit={handleEditProduct} />}
+      {isEditMode && <ProductForm onSubmit={handleEditProduct} isEditMode={isEditMode} defaultData={data} />}
       <h2>{data.name}</h2>
       <p>{data._id}</p>
       <p>Description: {data.description}</p>
@@ -62,9 +62,9 @@ export default function Product() {
             setIsEditMode((isEditMode) => !isEditMode);
           }}
         >
-          edit
+          ✏️
         </button>
-        <button onClick={handleDeleteProduct}>delete</button>
+        <button onClick={handleDeleteProduct}>🗑️</button>
       </div>
       <StyledLink href="/">Back to all</StyledLink>
     </ProductCard>
